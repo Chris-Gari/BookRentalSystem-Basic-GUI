@@ -347,7 +347,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
                 imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1test/" + bookArray[i].getBookTitle() + ".jpg")));
                 rentpriceText.setText("$" + Double.toString(bookArray[i].getRentPrice()));
                 
-                if (bookArray[i].isBought()){           
+                if (bookArray[i].isBought()){
                     rentStatus.setText(bookArray[i].isSettled() ? "Settled for Missing book" : "Owned");
                     
                 } else if (!bookArray[i].isBought() && !bookArray[i].isMissing()) {
@@ -360,6 +360,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
                 if(!bookArray[i].isBought() && !bookArray[i].isRented() && !bookArray[i].isMissing()) {
                     rentANDreturn.setEnabled(true);
                     rentANDreturn.setText("Rent");
+                    lostBook_btn.setEnabled(false);
                 } else if (bookArray[i].isRented()) {
                     rentANDreturn.setText("Return");
                 } else if (bookArray[i].isMissing()) {
@@ -459,21 +460,24 @@ public class WelcomeFrame extends javax.swing.JFrame {
         
         if (isMoneyEnough) {
            subjectBook.setisBought(true);
+            rentANDreturn.setEnabled(false);
            double change = Double.parseDouble(userPayment) - subjectBook.getBuyPrice();
            changeText.setText("$" + change);
+           
            
            if (!subjectBook.isMissing()) {
                rentStatus.setText("Owned");
                receiptPType.setText("Ownership");
+               lostBook_btn.setEnabled(false);
            } else {
                rentStatus.setText("Settled for Missing book");
                receiptPType.setText("Settlement");
                subjectBook.setisSettled(true);
                subjectBook.setisMissing(false);
                lostBook_btn.setEnabled(false);
+               rentANDreturn.setEnabled(true);
+               rentANDreturn.setText("Rent");
            }
-
-           rentANDreturn.setEnabled(false);
 
            receiptBuyer.setText(nameBill.getText());
            receiptPrice.setText(buypriceText.getText());
