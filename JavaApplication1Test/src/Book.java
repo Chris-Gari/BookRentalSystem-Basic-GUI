@@ -15,7 +15,7 @@ public class Book {
     private String bookTitle;
     private double rentPrice, buyPrice;
     
-    private boolean isBought, isRented, isMissing;
+    private boolean isBought, isRented, isMissing, isSettled;
     private String imagePath;
 
     
@@ -77,11 +77,18 @@ public class Book {
     }
     
     public void setisMissing(boolean x) {
-    isMissing = x;
+    this.isMissing = x;
     }
     
     public boolean isMissing() {
-    return isMissing;
+    return this.isMissing;
     }
     
+    public void setisSettled(boolean x) {
+    this.isSettled = x;
+    }
+    
+    public boolean isSettled() {
+    return this.isSettled;
+    }
 }
