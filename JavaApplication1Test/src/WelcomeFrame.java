@@ -504,6 +504,8 @@ public class WelcomeFrame extends javax.swing.JFrame {
                rentStatus.setText("Settled for Missing book");
                receiptPType.setText("Settlement");
                subjectBook.setisSettled(true);
+               subjectBook.setisMissing(false);
+               lostBook_btn.setEnabled(false);
            }
 
            rentANDreturn.setEnabled(false);
