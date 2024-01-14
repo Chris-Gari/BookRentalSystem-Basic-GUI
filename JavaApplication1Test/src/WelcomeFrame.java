@@ -71,7 +71,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         changeText = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        print_button = new javax.swing.JButton();
         showMembers_btn = new javax.swing.JButton();
         mainBanner = new javax.swing.JLabel();
 
@@ -222,14 +222,14 @@ public class WelcomeFrame extends javax.swing.JFrame {
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
         jPanel5.add(changeText, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Print");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        print_button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        print_button.setText("Print");
+        print_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                print_buttonActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel5.add(print_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         showMembers_btn.setText("Members");
         showMembers_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -335,12 +335,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
         setTitle("Hello, " + userName + "!");
         nameBill.setText(userName);
     }//GEN-LAST:event_btnOKActionPerformed
-//static String[] bookArrayList = {"Atomic Habits", "Diary of a Wimpy Kid", 
-//    "The Subtle Art of Not Giving a F*ck", "Lord of the Rings: The Fellowship of The Ring", "A Secret Between Gentlemen", "The Hobbit", "Ikigai", "The Power of Habit",
-//"Rich Dad Poor Dad", "The Willoughbys", "The Fault in our Stars", "milk and honey", "the sun and her flowers", "It Ends With Us", "Reminders of Him", "Theodore Boone: The Activist",
-//"Area 51 Interns: Alien Summer #1", "The Martian", "Catching Fire", "Harry Potter and the Deathly Hallows"};
-//static int[] bookrentPriceList = {3, 3, 5, 10, 5, 3, 3, 5, 10, 5, 3, 3, 5, 10, 5, 3, 3, 5, 10, 5,};
-//static double[] bookbuyPriceList = {29.99, 24.99, 34.99, 14.99, 34.99, 12.50, 5.99, 9.99, 14.99, 10.00, 24.80, 34.99, 5.99, 7.80, 12.99, 9.99, 11.30, 34.99, 14.99, 34.99,};
 
 
     private void bookListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookListActionPerformed
@@ -388,18 +382,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
          // NOI18N
 
 
-//        for(int i = 0;i < 20;i++){
-//           
-//            if(bookArrayList[i].equals(bookList.getSelectedItem())) {
-//                rentpriceText.setText("$" + Double.toString(bookrentPriceList[i]));
-//            }
-//        }
-//        
-//        for(int i = 0;i < 20;i++){
-//            if(bookArrayList[i].equals(bookList.getSelectedItem())) {
-//                buypriceText.setText("$" + Double.toString(bookbuyPriceList[i]));
-//            }
-//        }
         
         
         
@@ -454,23 +436,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
         
         
         
-//        if (rentANDreturn.getText().equals("Return")) {
-//            receiptBuyer.setText(nameBill.getText());
-//            receiptPType.setText("Returned");
-//            receiptPrice.setText("$0");
-//            receiptBookTitle.setText("" + bookList.getSelectedItem());
-//            
-//            
-//           rentANDreturn.setText("Rent");
-//       } else {
-//            
-//        receiptBuyer.setText(nameBill.getText());
-//        receiptPType.setText("Renting");
-//        receiptPrice.setText(rentpriceText.getText());
-//        receiptBookTitle.setText("" + bookList.getSelectedItem());
-//            
-//       rentANDreturn.setText("Return");
-//       }
     }//GEN-LAST:event_rentANDreturnActionPerformed
 
     private Book findBook() {
@@ -522,21 +487,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
         }
        
         
-//        subjectBook.setisBought(true);
-//        changeText.setText("$" + change);
-//
-//        
-//        rentStatus.setText("Owned");
-//        rentANDreturn.setEnabled(false);
-//        
-//        receiptBuyer.setText(nameBill.getText());
-//        receiptPType.setText("Ownership");
-//        receiptPrice.setText(buypriceText.getText());
-//        receiptBookTitle.setText("" + bookList.getSelectedItem());
-//        
-//        receivedText.setText("$" + paymentText.getText());
-        
-
 
         
         
@@ -546,9 +496,22 @@ public class WelcomeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_paymentTextActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void print_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_buttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        String print_this = 
+                "===RECEIPT===" +
+                "\nBook Title: " +     receiptBookTitle.getText() +
+                "\nPurchase Type: " +  receiptPType.getText() +
+                "\nPrice: " +          receiptPrice.getText() +
+                "\nReceived: " +       receivedText.getText() +
+                "\nChange: " +         changeText.getText() +
+                "\nBilled to: " +      receiptBuyer.getText() +
+                "\n=============";
+                        
+       JOptionPane.showMessageDialog(this, print_this, "Receipt", JOptionPane.INFORMATION_MESSAGE, null);
+       
+    }//GEN-LAST:event_print_buttonActionPerformed
 
     private void lostBook_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lostBook_btnActionPerformed
         // TODO add your handling code here:
@@ -613,7 +576,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel buypriceText;
     private javax.swing.JLabel changeText;
     private javax.swing.JLabel imagePanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -640,6 +602,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel nameBill;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField paymentText;
+    private javax.swing.JButton print_button;
     private javax.swing.JLabel receiptBookTitle;
     private javax.swing.JLabel receiptBuyer;
     private javax.swing.JLabel receiptPType;
