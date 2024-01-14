@@ -354,18 +354,22 @@ public class WelcomeFrame extends javax.swing.JFrame {
                 rentpriceText.setText("$" + Double.toString(bookArray[i].getRentPrice()));
                 
                 if (bookArray[i].isBought()){           
-                    rentStatus.setText("Owned");
+                    rentStatus.setText(bookArray[i].isSettled() ? "Settled for Missing book" : "Owned");
                     
-                } else if (!bookArray[i].isBought()) {
+                } else if (!bookArray[i].isBought() && !bookArray[i].isMissing()) {
                     rentStatus.setText(bookArray[i].isRented() ? "Rented" : "Not Rented or Owned");
-                } 
+                } else if (bookArray[i].isMissing()) {
+                    rentStatus.setText("Missing");
+                }
                 
                // buypriceText.setText("$" + Double.toString(bookArray[i].getBuyPrice()));
-                if(!bookArray[i].isBought() && !bookArray[i].isRented()) {
+                if(!bookArray[i].isBought() && !bookArray[i].isRented() && !bookArray[i].isMissing()) {
                     rentANDreturn.setEnabled(true);
                     rentANDreturn.setText("Rent");
                 } else if (bookArray[i].isRented()) {
                     rentANDreturn.setText("Return");
+                } else if (bookArray[i].isMissing()) {
+                    rentANDreturn.setEnabled(false);
                 }
             }
         }
@@ -499,6 +503,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
            } else {
                rentStatus.setText("Settled for Missing book");
                receiptPType.setText("Settlement");
+               subjectBook.setisSettled(true);
            }
 
            rentANDreturn.setEnabled(false);
