@@ -393,7 +393,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
         Book subjectBook = findBook();
 
         String userPayment = paymentText.getText();
-        boolean isMoneyEnough = Double.parseDouble(userPayment) > subjectBook.getRentPrice();
+        boolean isMoneyEnough = Double.parseDouble(userPayment) >= subjectBook.getRentPrice();
         
 
 
@@ -456,7 +456,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
         String userPayment = paymentText.getText();
         
-        boolean isMoneyEnough = Double.parseDouble(userPayment) > subjectBook.getBuyPrice();
+        boolean isMoneyEnough = Double.parseDouble(userPayment) >= subjectBook.getBuyPrice();
         
         if (isMoneyEnough) {
            subjectBook.setisBought(true);
