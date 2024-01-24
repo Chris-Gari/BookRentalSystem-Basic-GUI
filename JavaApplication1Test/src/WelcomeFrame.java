@@ -294,29 +294,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
     private String userName = "";
     //static Book[] bookArray = new Book[20];
-    
-    private static void init_receipt_txt() {
-
-    try {
-        File file = new File("Receipt.txt");
-        FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);
-        
-        pw.println("Hey");
-
-        pw.close();
-
-    
-        } catch (IOException e) {
-        // Handle the exception or log it
-        e.printStackTrace();
-        
-        
-        }
-    }
-
-    
-    
+     
     
     static Book[] bookArray = new Book[20];
     public static void setArray() {
@@ -515,17 +493,36 @@ public class WelcomeFrame extends javax.swing.JFrame {
     private void print_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_buttonActionPerformed
  
            // TODO add your handling code here:
+        String directory = JOptionPane.showInputDialog(this, "Save to: ", "Save as", JOptionPane.QUESTION_MESSAGE);
+
+        if(directory != null) {
+            String filePath = directory + "/Receipt.txt";
+            String print_this =
+            "===RECEIPT===" +
+            "\nBook Title: " +     receiptBookTitle.getText() +
+            "\nPurchase Type: " +  receiptPType.getText() +
+            "\nPrice: " +          receiptPrice.getText() +
+            "\nReceived: " +       receivedText.getText() +
+            "\nChange: " +         changeText.getText() +
+            "\nBilled to: " +      receiptBuyer.getText() +
+            "\n=============";
+
+            try {
+
+                FileWriter fileWriter = new FileWriter(filePath);
+                BufferedWriter writer = new BufferedWriter(fileWriter);
+
+                writer.write(print_this);
+                writer.close();
+
+                System.out.println("Content has been written to the file.");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
             
-        String print_this =
-                "===RECEIPT===" +
-                "\nBook Title: " +     receiptBookTitle.getText() +
-                "\nPurchase Type: " +  receiptPType.getText() +
-                "\nPrice: " +          receiptPrice.getText() +
-                "\nReceived: " +       receivedText.getText() +
-                "\nChange: " +         changeText.getText() +
-                "\nBilled to: " +      receiptBuyer.getText() +
-                "\n=============";
-        JOptionPane.showMessageDialog(this, print_this, "Receipt", JOptionPane.INFORMATION_MESSAGE, null);
+        //JOptionPane.showMessageDialog(this, print_this, "Receipt", JOptionPane.INFORMATION_MESSAGE, null);
         
         
     }//GEN-LAST:event_print_buttonActionPerformed
@@ -553,8 +550,6 @@ public class WelcomeFrame extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         setArray();
-        init_receipt_txt();
-        
       
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
