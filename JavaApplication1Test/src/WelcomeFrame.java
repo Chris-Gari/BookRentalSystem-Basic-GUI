@@ -1,9 +1,10 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.util.*;
+import javax.swing.*;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.Document;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -99,7 +100,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bookList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Catching Fire", "The Martian", "Area 51 Interns Alien Summer 1", "Theodore Boone The Activist", "Reminders of Him", "It Ends With Us", "the sun and her flowers", "milk and honey", "The Fault in our Stars", "The Willoughbys", "Rich Dad Poor Dad", "The Power of Habit", "Ikigai", "The Hobbit", "A Secret Between Gentlemen", "Lord of the Rings The Fellowship of The Ring", "The Subtle Art of Not Giving a Fck", "Diary of Wimpy Kid", "Atomic Habits" }));
+        bookList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Catching Fire", "The Martian", "Area 51 Interns Alien Summer 1", "Theodore Boone The Activist", "Reminders of Him", "It Ends With Us", "the sun and her flowers", "milk and honey", "The Fault in our Stars", "The Willoughbys", "Rich Dad Poor Dad", "The Power of Habit", "Ikigai", "The Hobbit", "A Secret Between Gentlemen", "Lord of the Rings The Fellowship of The Ring", "The Subtle Art of Not Giving a Fck", "Diary of Wimpy Kid", "Atomic Habits", "Harry Potter and the Deathly Hallows" }));
         bookList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookListActionPerformed(evt);
@@ -294,31 +295,53 @@ public class WelcomeFrame extends javax.swing.JFrame {
     private String userName = "";
     //static Book[] bookArray = new Book[20];
     
+    private static void init_receipt_txt() {
+
+    try {
+        File file = new File("Receipt.txt");
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+        
+        pw.println("Hey");
+
+        pw.close();
+
+    
+        } catch (IOException e) {
+        // Handle the exception or log it
+        e.printStackTrace();
+        
+        
+        }
+    }
+
+    
+    
     
     static Book[] bookArray = new Book[20];
     public static void setArray() {
-    
-    bookArray[0] = new Book("Atomic Habits", 3, 21.99);
-    bookArray[1] = new Book("Diary of Wimpy Kid", 3, 9.99);
-    bookArray[2] = new Book("The Subtle Art of Not Giving a Fck", 3, 7.77);
-    bookArray[3] = new Book("Lord of the Rings The Fellowship of The Ring", 3, 8.99);
-    bookArray[4] = new Book("A Secret Between Gentlemen", 4, 10.99);
-    bookArray[5] = new Book("The Hobbit", 3.2, 10.99);
-    bookArray[6] = new Book("Ikigai", 3, 10.99);
-    bookArray[7] = new Book("The Power of Habit", 2.79, 10.99);
-    bookArray[8] = new Book("Rich Dad Poor Dad", 2.99, 16.99);
+        
+    bookArray[0] = new Book("Catching Fire", 5, 17.99);
+    bookArray[1] = new Book("The Martian", 4, 29.39);
+    bookArray[2] = new Book("Area 51 Interns Alien Summer 1", 3, 29.99);
+    bookArray[3] = new Book("Theodore Boone The Activist", 3, 24.99);
+    bookArray[4] = new Book("Reminders of Him", 3, 10.99);
+    bookArray[5] = new Book("It Ends With Us", 4, 10.99);
+    bookArray[6] = new Book("the sun and her flowers", 3, 14.50);
+    bookArray[7] = new Book("milk and honey", 5, 10.99);
+    bookArray[8] = new Book("The Fault in our Stars", 3, 10.70);
     bookArray[9] = new Book("The Willoughbys", 5, 15.99);
-    bookArray[10] = new Book("The Fault in our Stars", 3, 10.70);
-    bookArray[11] = new Book("milk and honey", 5, 10.99);
-    bookArray[12] = new Book("the sun and her flowers", 3, 14.50);
-    bookArray[13] = new Book("It Ends With Us", 4, 10.99);
-    bookArray[14] = new Book("Reminders of Him", 3, 10.99);
-    bookArray[15] = new Book("Theodore Boone The Activist", 3, 24.99);
-    bookArray[16] = new Book("Area 51 Interns Alien Summer 1", 3, 29.99);
-    bookArray[17] = new Book("The Martian", 4, 29.39);
-    bookArray[18] = new Book("Catching Fire", 5, 17.99);
+    bookArray[10] = new Book("Rich Dad Poor Dad", 2.99, 16.99);
+    bookArray[11] = new Book("The Power of Habit", 2.79, 10.99);
+    bookArray[12] = new Book("Ikigai", 3, 10.99);
+    bookArray[13] = new Book("The Hobbit", 3.2, 10.99);
+    bookArray[14] = new Book("A Secret Between Gentlemen", 4, 10.99);
+    bookArray[15] = new Book("Lord of the Rings The Fellowship of The Ring", 3, 8.99);
+    bookArray[16] = new Book("The Subtle Art of Not Giving a Fck", 3, 7.77);
+    bookArray[17] = new Book("Diary of Wimpy Kid", 3, 9.99);
+    bookArray[18] = new Book("Atomic Habits", 3, 21.99);
     bookArray[19] = new Book("Harry Potter and the Deathly Hallows", 6, 34.99);
-    
+   
     }
         
    
@@ -339,45 +362,40 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
     private void bookListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookListActionPerformed
         // TODO add your handling code here:  
+        Book subjectBook = findBook();
         
- 
-        for(int i = 0;i < 20;i++){
            
-            if(bookArray[i].getBookTitle().equals(bookList.getSelectedItem())) {
-                imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1test/" + bookArray[i].getBookTitle() + ".jpg")));
-                rentpriceText.setText("$" + Double.toString(bookArray[i].getRentPrice()));
-                
-                if (bookArray[i].isBought()){
-                    rentStatus.setText(bookArray[i].isSettled() ? "Settled for Missing book" : "Owned");
-                    
-                } else if (!bookArray[i].isBought() && !bookArray[i].isMissing()) {
-                    rentStatus.setText(bookArray[i].isRented() ? "Rented" : "Not Rented or Owned");
-                } else if (bookArray[i].isMissing()) {
-                    rentStatus.setText("Missing");
-                }
-                
-               // buypriceText.setText("$" + Double.toString(bookArray[i].getBuyPrice()));
-                if(!bookArray[i].isBought() && !bookArray[i].isRented() && !bookArray[i].isMissing()) {
-                    rentANDreturn.setEnabled(true);
-                    rentANDreturn.setText("Rent");
-                    lostBook_btn.setEnabled(false);
-                } else if (bookArray[i].isRented()) {
-                    rentANDreturn.setText("Return");
-                } else if (bookArray[i].isMissing()) {
-                    rentANDreturn.setEnabled(false);
-                }
-            }
-        }
-        
-        for(int i = 0;i < 20;i++){
-        
-            if(bookArray[i].getBookTitle().equals(bookList.getSelectedItem())) {
-                imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1test/" + bookArray[i].getBookTitle() + ".jpg")));
-                buypriceText.setText("$" + Double.toString(bookArray[i].getBuyPrice()));
+        if(subjectBook.getBookTitle().equals(bookList.getSelectedItem())) {
+            imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1test/" + subjectBook.getBookTitle() + ".jpg")));
+            rentpriceText.setText("$" + Double.toString(subjectBook.getRentPrice()));
 
-                lostBook_btn.setEnabled(bookArray[i].isRented());
+            if (subjectBook.isBought()){
+                rentStatus.setText(subjectBook.isSettled() ? "Settled for Missing book" : "Owned");
+
+            } else if (!subjectBook.isBought() && !subjectBook.isMissing()) {
+                rentStatus.setText(subjectBook.isRented() ? "Rented" : "Not Rented or Owned");
+            } else if (subjectBook.isMissing()) {
+                rentStatus.setText("Missing");
+            }
+
+            if(!subjectBook.isBought() && !subjectBook.isRented() && !subjectBook.isMissing()) {
+                rentANDreturn.setEnabled(true);
+                rentANDreturn.setText("Rent");
+                lostBook_btn.setEnabled(false);
+            } else if (subjectBook.isRented()) {
+                rentANDreturn.setText("Return");
+            } else if (subjectBook.isMissing()) {
+                rentANDreturn.setEnabled(false);
             }
         }
+        
+
+        imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1test/" + subjectBook.getBookTitle() + ".jpg")));
+        buypriceText.setText("$" + Double.toString(subjectBook.getBuyPrice()));
+
+        lostBook_btn.setEnabled(subjectBook.isRented());
+
+
         
         
          // NOI18N
@@ -394,46 +412,44 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
         String userPayment = paymentText.getText();
         boolean isMoneyEnough = Double.parseDouble(userPayment) >= subjectBook.getRentPrice();
-        
+       
 
-
-        if(subjectBook.getBookTitle().equals(bookList.getSelectedItem())) {
             //bookArray[i].setisRented(true);
-            if(rentANDreturn.getText().equals("Rent") && isMoneyEnough) {
-                receiptBuyer.setText(nameBill.getText());
-                receiptPType.setText("Renting");
-                receiptPrice.setText(rentpriceText.getText());
-                receiptBookTitle.setText("" + bookList.getSelectedItem());
-                subjectBook.setisRented(true);
-                rentStatus.setText("Rented");
+        if(rentANDreturn.getText().equals("Rent") && isMoneyEnough) {
+            receiptBuyer.setText(nameBill.getText());
+            receiptPType.setText("Renting");
+            receiptPrice.setText(rentpriceText.getText());
+            receiptBookTitle.setText("" + bookList.getSelectedItem());
+            subjectBook.setisRented(true);
+            rentStatus.setText("Rented");
 
-                changeText.setText("$" + (Double.parseDouble(paymentText.getText()) - subjectBook.getRentPrice()));
-                receivedText.setText("$" + paymentText.getText());
-                lostBook_btn.setEnabled(true);
+            changeText.setText("$" + (Double.parseDouble(paymentText.getText()) - subjectBook.getRentPrice()));
+            receivedText.setText("$" + paymentText.getText());
+            lostBook_btn.setEnabled(true);
 
-                rentANDreturn.setText("Return");
-            }
-
-            else if (rentANDreturn.getText().equals("Return")) {
-                receiptBuyer.setText(nameBill.getText());
-                receiptPType.setText("Returned");
-                receiptPrice.setText(rentpriceText.getText());
-                receiptBookTitle.setText("" + bookList.getSelectedItem());
-
-                rentStatus.setText("Not Rented or Owned");
-                changeText.setText("N/A");
-                receivedText.setText("N/A");
-
-                subjectBook.setisRented(false);
-                lostBook_btn.setEnabled(false);
-                rentANDreturn.setText("Rent");
-            } else if (!isMoneyEnough) {
-              JOptionPane.showMessageDialog(this, "Insufficient funds.", "No money", 2);
-            } else {
-            JOptionPane.showMessageDialog(this, "Please pay the required amount.", "Error", 2);
-            }
-            
+            rentANDreturn.setText("Return");
         }
+
+        else if (rentANDreturn.getText().equals("Return")) {
+            receiptBuyer.setText(nameBill.getText());
+            receiptPType.setText("Returned");
+            receiptPrice.setText(rentpriceText.getText());
+            receiptBookTitle.setText("" + bookList.getSelectedItem());
+
+            rentStatus.setText("Not Rented or Owned");
+            changeText.setText("N/A");
+            receivedText.setText("N/A");
+
+            subjectBook.setisRented(false);
+            lostBook_btn.setEnabled(false);
+            rentANDreturn.setText("Rent");
+        } else if (!isMoneyEnough) {
+          JOptionPane.showMessageDialog(this, "Insufficient funds.", "No money", 2);
+        } else {
+        JOptionPane.showMessageDialog(this, "Please pay the required amount.", "Error", 2);
+        }
+            
+        
         
         
         
@@ -441,13 +457,9 @@ public class WelcomeFrame extends javax.swing.JFrame {
 
     private Book findBook() {
         
-        for(int i = 0;i < 20;i++){
-
-            if(bookArray[i].getBookTitle().equals(bookList.getSelectedItem())) {
-                return bookArray[i];
-            }
-        }
-        return null;
+        Book subjectBook = bookArray[bookList.getSelectedIndex()];
+        
+        return subjectBook;
     }
     
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
@@ -501,9 +513,10 @@ public class WelcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_paymentTextActionPerformed
 
     private void print_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_buttonActionPerformed
-        // TODO add your handling code here:
-        
-        String print_this = 
+ 
+           // TODO add your handling code here:
+            
+        String print_this =
                 "===RECEIPT===" +
                 "\nBook Title: " +     receiptBookTitle.getText() +
                 "\nPurchase Type: " +  receiptPType.getText() +
@@ -512,9 +525,9 @@ public class WelcomeFrame extends javax.swing.JFrame {
                 "\nChange: " +         changeText.getText() +
                 "\nBilled to: " +      receiptBuyer.getText() +
                 "\n=============";
-                        
-       JOptionPane.showMessageDialog(this, print_this, "Receipt", JOptionPane.INFORMATION_MESSAGE, null);
-       
+        JOptionPane.showMessageDialog(this, print_this, "Receipt", JOptionPane.INFORMATION_MESSAGE, null);
+        
+        
     }//GEN-LAST:event_print_buttonActionPerformed
 
     private void lostBook_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lostBook_btnActionPerformed
@@ -540,6 +553,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         setArray();
+        init_receipt_txt();
         
       
         /* Set the Nimbus look and feel */
