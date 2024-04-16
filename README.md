@@ -1,6 +1,6 @@
 # BookRentalSystem-Basic-GUI
 
-Import JavaApplication1Test.zip to Apache NetBeans to interact with the project
+Import [JavaApplication1Test.zip](https://github.com/Chris-Gari/BookRentalSystem-Basic-GUI/blob/main/JavaApplication1Test.zip) to Apache NetBeans to interact with the project
 
 
 ## Demo
